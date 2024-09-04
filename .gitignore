@@ -1,2 +1,8 @@
 *.DS_Store
-
+00_boilerplates/1_p5-basics-line/*.js
+00_boilerplates/2_p5-basics-grid/*.js
+00_boilerplates/3_p5-basics-animation/*.js
+00_boilerplates/4_p5-basics-advanced_animation/*.js
+00_boilerplates/5_p5-basics-interactions/*.js
+00_boilerplates/6_p5-lineBetween/*.js
+00_boilerplates/7_p5-lineBetweenAll/*.js
