@@ -3,6 +3,7 @@ function setup() {
 	pixelDensity(2);
 	background("rgba(250, 250, 250)");
 	noStroke();
+
 	fill("black");
 	ellipse(windowWidth / 2, windowHeight / 2, 100);
 }

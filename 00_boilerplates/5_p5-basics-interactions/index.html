@@ -11,6 +11,27 @@
 				overflow: hidden;
 				filter: contrast(120%);
 			}
+			.back-infos {
+				position: fixed;
+				top: 0;
+				z-index: -1;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				display: flex;
+				font-family: "Unica 77 LL";
+				font-weight: 500;
+				justify-content: flex-start;
+				align-items: flex-end;
+				color: RGB(0, 255, 0);
+				font-size: 10rem;
+
+				z-index: 1000;
+				margin: 0;
+			}
+			p {
+				margin: 0;
+			}
 		</style>
 		<script src="./p5.js"></script>
 		<script src="./Ball.js"></script>
@@ -18,6 +39,7 @@
 	</head>
 
 	<body>
+		<div class="back-infos"><p>BREAK JUSQU'À 15h30</p></div>
 		<main></main>
 	</body>
 </html>
