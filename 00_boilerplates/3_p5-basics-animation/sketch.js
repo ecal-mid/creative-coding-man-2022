@@ -1,6 +1,6 @@
 const grid = {
-	numColumns: 10,
-	numRows: 10,
+	numColumns: 100,
+	numRows: 100,
 };
 const ball = {
 	diameter: 10,
@@ -14,8 +14,8 @@ const moveProps = {
 const array = [0, 0, 0, 1];
 
 function defineNumCells() {
-	grid.numRows = Math.floor(windowHeight / 100);
-	grid.numColumns = Math.floor(windowWidth / 100);
+	// grid.numRows = Math.floor(windowHeight / 10);
+	// grid.numColumns = Math.floor(windowWidth / 10);
 }
 
 function setup() {
@@ -28,7 +28,6 @@ function setup() {
 function draw() {
 	noStroke();
 	background("rgba(255,255,255,0.01)");
-
 	fill("black");
 	for (let yPos = 0; yPos < grid.numRows; yPos = yPos + 1) {
 		for (let xPos = 0; xPos < grid.numColumns; xPos = xPos + 1) {
@@ -38,12 +37,13 @@ function draw() {
 				x: sizeColumn * xPos + sizeColumn / 2,
 				y: sizeRow * yPos + sizeRow / 2,
 			};
-
 			const deplacement = {
 				x:
 					Math.sin((frameCount + xPos * 10) * moveProps.velocity) *
 					moveProps.amplitude,
-				y: Math.cos(frameCount * moveProps.velocity) * moveProps.amplitude,
+				y:
+					Math.cos((frameCount + xPos * 10) * moveProps.velocity) *
+					moveProps.amplitude,
 			};
 
 			noStroke();
