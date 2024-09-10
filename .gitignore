@@ -1,5 +1,5 @@
 *.DS_Store
 # 00_boilerplates/4_p5-basics-advanced_animation/*.js
-00_boilerplates/5_p5-basics-interactions/*.js
-00_boilerplates/6_p5-lineBetween/*.js
-00_boilerplates/7_p5-lineBetweenAll/*.js
+# 00_boilerplates/5_p5-basics-interactions/*.js
+# 00_boilerplates/6_p5-lineBetween/*.js
+# 00_boilerplates/7_p5-lineBetweenAll/*.js

@@ -2,10 +2,7 @@ const grid = {
 	numColumns: 10,
 	numRows: 10,
 };
-const ball = {
-	diameter: 20,
-	color: "black",
-};
+
 const moveProps = {
 	amplitude: null,
 	velocity: 0.01,
@@ -35,11 +32,17 @@ function initBalls() {
 				x: sizeColumn * xPos + sizeColumn / 2,
 				y: sizeRow * yPos + sizeRow / 2,
 			};
+
+			const hue = xPos * (yPos * 4);
 			const balle = {
 				col: xPos,
 				row: yPos,
+				hue: hue,
+				luminosity: 30,
+				color: null,
 				position: { x: positionBall.x, y: positionBall.y },
 				velocity: { x: random(-1, 1), y: random(-1, 1) },
+				diameter: random(1, 20),
 			};
 			arrayBalls.push(balle);
 		}
@@ -48,22 +51,66 @@ function initBalls() {
 
 function draw() {
 	noStroke();
-	background("rgba(255,255,255,0.01)");
-	fill("black");
+	// background("rgba(255,255,255,0.1)");
+	noStroke();
 
 	for (let i = 0; i < arrayBalls.length; i++) {
+		fill("hsl(" + arrayBalls[i].hue + ",100%, 50%)");
+
 		arrayBalls[i].position.x =
 			arrayBalls[i].position.x + arrayBalls[i].velocity.x;
 		arrayBalls[i].position.y =
 			arrayBalls[i].position.y + arrayBalls[i].velocity.y;
+		if (
+			arrayBalls[i].position.x >= windowWidth - arrayBalls[i].diameter / 2 ||
+			arrayBalls[i].position.x <= arrayBalls[i].diameter / 2
+		) {
+			arrayBalls[i].velocity.x = -arrayBalls[i].velocity.x;
+			arrayBalls[i].velocity.x = arrayBalls[i].velocity.x;
+			arrayBalls[i].luminosity += 5;
+		}
+		if (
+			arrayBalls[i].position.y >= windowHeight - arrayBalls[i].diameter / 2 ||
+			arrayBalls[i].position.y <= arrayBalls[i].diameter / 2
+		) {
+			arrayBalls[i].velocity.y = -arrayBalls[i].velocity.y;
+			arrayBalls[i].velocity.y = arrayBalls[i].velocity.y;
+			arrayBalls[i].luminosity += 5;
+		}
+		ellipse(
+			arrayBalls[i].position.x,
+			arrayBalls[i].position.y,
+			arrayBalls[i].diameter
+		);
+	}
+}
 
-		noStroke();
-		fill("black");
-		ellipse(arrayBalls[i].position.x, arrayBalls[i].position.y, ball.diameter);
+function keyPressed(ev) {
+	if (ev.keyCode == 37) {
+		for (let i = 0; i < arrayBalls.length; i++) {
+			arrayBalls[i].hue = arrayBalls[i].hue - 20;
+			if (arrayBalls[i].hue <= 0) {
+				arrayBalls[i].hue = 360;
+			}
+		}
+	}
+
+	if (ev.keyCode == 38) {
+		for (let i = 0; i < arrayBalls.length; i++) {
+			arrayBalls[i].diameter = arrayBalls[i].diameter + 10;
+		}
+	}
+
+	if (ev.keyCode == 39) {
+		for (let i = 0; i < arrayBalls.length; i++) {
+			arrayBalls[i].hue = arrayBalls[i].hue + 20;
+			if (arrayBalls[i].hue > 360) {
+				arrayBalls[i].hue = 0;
+			}
+		}
 	}
 }
 
 function windowResized() {
 	resizeCanvas(windowWidth, windowHeight);
-	setup();
 }
